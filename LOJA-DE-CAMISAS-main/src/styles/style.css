@@ -1,0 +1,98 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  background:#f5f5f5;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+#cart-btn{
+  background: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 200px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* 🔥 CARRINHO (MELHORADO) */
+.cart {
+  position: fixed;
+  right: -300px;
+  top: 0;
+  width: 300px;
+  height: 100vh; /* 🔥 ajuste importante */
+  background: white;
+  padding: 20px;
+  transition: 0.4s;
+  box-shadow: -5px 0 10px rgba(0,0,0,0.2);
+
+  display: flex; /* 🔥 novo */
+  flex-direction: column; /* 🔥 novo */
+}
+
+.cart.active {
+  right: 0;
+}
+
+/* 🔥 SCROLL AQUI */
+#cart-items {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding-right: 5px;
+}
+
+/* 🔥 ITEM */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* 🔥 IMAGEM */
+.cart-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 🔥 BOTÃO REMOVER */
+.cart-item button {
+  margin-left: auto;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+/* 🔥 SCROLL BONITO */
+#cart-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+#cart-items::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 10px;
+}

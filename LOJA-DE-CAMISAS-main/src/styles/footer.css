@@ -1,0 +1,37 @@
+   footer{
+      background:#111;
+      color:#fff;
+      padding:40px;
+      margin-top:40px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+      gap:20px;
+
+    }
+
+    .footer-grid a{
+        color: white;
+    }
+
+    footer h4{
+      margin-bottom:10px;
+    }
+
+    footer ul{
+      list-style:none;
+    }
+
+    footer li{
+      margin-bottom:5px;
+      font-size:14px;
+    }
+
+    footer p{
+      text-align:center;
+      margin-top:20px;
+      font-size:14px;
+      opacity:0.6;
+    }
