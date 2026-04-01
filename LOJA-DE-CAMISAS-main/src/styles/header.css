@@ -3,11 +3,11 @@
 header{
   width:100%;
   padding:20px 40px;
-  background:#fff;
+  background:#000000;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
+  box-shadow:0 2px 10px rgba(49, 48, 48, 0.1);
   position:sticky;
   top:0;
   z-index:100;
@@ -23,12 +23,15 @@ header{
 .logo img{
     width: 100%;
     height: auto;
+    margin-left: 10px;
+
 }
 
 .logo h1{
     font-size: 20px;
     margin-left:50px ;
-    margin-top: -36px;
+    margin-top: -39px;
+    color: white;
 }
 
 nav ul{
@@ -39,7 +42,7 @@ nav ul{
 
 nav a{
   text-decoration:none;
-  color:#000;
+  color:#ffffff;
   font-weight:500;
   transition: 0.3s;
 }
@@ -49,7 +52,7 @@ nav a:hover{
     }
 
 nav a.active{
-    color: #000000;
+    color: #ffffff;
     font-weight: 600;
     padding: 2px;
     border-bottom:3px solid #f6d221;
@@ -81,6 +84,12 @@ nav a.active{
 .search-icon{
   cursor: pointer;
   font-size: 18px;
+  color: rgb(255, 255, 255);
+  transition: transform 0.2s ease;
+}
+
+.search-icon:hover {
+  transform: translateY(-3px);
 }
 
 
@@ -91,7 +100,7 @@ nav a.active{
 }
 
 .search-box input:focus{
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
   box-shadow: 0 0 5px #f6d221 ;
   outline: none;
 }

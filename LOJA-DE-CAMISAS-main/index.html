@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="src/styles/header.css">
     <link rel="stylesheet" href="src/styles/style.css">
     <link rel="stylesheet" href="src/styles/home.css">
     <link rel="stylesheet" href="src/styles/produtos.css">
     <link rel="stylesheet" href="src/styles/footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 
     <title>VintageSports</title>
 </head>
 
 <body>
+
+<div id="overlay"></div>
+
 <header>
   <div class="logo">
       <img src="imagens/logo.png" alt="">
@@ -43,7 +46,7 @@
 <section class="hero">
   <div class="content">
       <h1>Nova coleção disponível agora</h1>
-      <button>comprar agora!</button>
+      <button>Comprar agora!</button>
   </div>
 </section>
 
@@ -52,41 +55,87 @@
 
   <div class="grid" id="product-list">
 
+    <!-- PRODUTO 1 -->
     <div class="card">
-      <img src="imagens/ALEMANHA/BAYERN MUNICH 1989 1990.jpg" alt="">
+      <img src="imagens/ALEMANHA/BAYERN MUNICH 1989 1990.jpg">
       <h3>Camisa Bayern Munich 1989</h3>
+
+      <div class="stars">★★★★★</div>
+
       <p class="price">R$ 299,90</p>
-      <button onclick="addToCart('Camisa Bayern Munich 1989', 299.90, 'imagens/ALEMANHA/BAYERN MUNICH 1989 1990.jpg')">
-        Adicionar
-      </button>
+
+      <div class="buttons">
+        <button onclick="addToCart('Camisa Bayern Munich 1989', 299.90, 'imagens/ALEMANHA/BAYERN MUNICH 1989 1990.jpg' ,this)">
+          🛒 Adicionar
+        </button>
+        <button class="buy-btn">⚡ Comprar</button>
+      </div>
     </div>
 
+    <!-- PRODUTO 2 -->
     <div class="card">
-      <img src="imagens/ARGENTINA/Camisa Boca Juniors 1 Retrô 1990  1991.webp" alt="">
-      <h3>Camisa Boca juniors 1990</h3>
+      <img src="imagens/ARGENTINA/Camisa Boca Juniors 1 Retrô 1990  1991.webp">
+      <h3>Camisa Boca Juniors 1990</h3>
+
+      <div class="stars">★★★★★</div>
+
       <p class="price">R$ 199,90</p>
-      <button onclick="addToCart('Camisa juniors 1990', 199.90, 'imagens/ARGENTINA/Camisa Boca Juniors 1 Retrô 1990  1991.webp')">
-        Adicionar
-      </button>
+
+      <div class="buttons">
+        <button onclick="addToCart('Camisa Boca Juniors 1990', 199.90, 'imagens/ARGENTINA/Camisa Boca Juniors 1 Retrô 1990  1991.webp', this)">
+          🛒 Adicionar
+        </button>
+        <button class="buy-btn">⚡ Comprar</button>
+      </div>
     </div>
 
+    <!-- PRODUTO 3 -->
     <div class="card">
-      <img src="imagens/INGLATERRA/Camisa Manchester United Away Azul 1990-92 Masculina.webp" alt="">
-      <h3>Camisa Manchester United Away 1990-92</h3>
+      <img src="imagens/INGLATERRA/Camisa Manchester United Away Azul 1990-92 Masculina.webp">
+      <h3>Camisa Manchester United 1990-92</h3>
+
+      <div class="stars">★★★★★</div>
+
       <p class="price">R$ 249,90</p>
-      <button onclick="addToCart('Camisa Manchester United 1990', 249.90, 'imagens/INGLATERRA/Camisa Manchester United Away Azul 1990-92 Masculina.webp')">
-        Adicionar
-      </button>
+
+      <div class="buttons">
+        <button onclick="addToCart('Camisa Manchester United 1990-92', 249.90, 'imagens/INGLATERRA/Camisa Manchester United Away Azul 1990-92 Masculina.webp', this)">
+          🛒 Adicionar
+        </button>
+        <button class="buy-btn">⚡ Comprar</button>
+      </div>
+    </div>
+
+    <!-- PRODUTO 4 -->
+    <div class="card">
+      <img src="imagens/ESPANHA/CAMISA RETRÔ ATLÉTICO DE MADRID (ESPANHA) 1989 - 1990.jpg">
+      <h3>Camisa Atlético de Madrid 1989</h3>
+
+      <div class="stars">★★★★★</div>
+
+      <p class="price">R$ 249,90</p>
+
+      <div class="buttons">
+        <button onclick="addToCart('Camisa Atlético de Madrid 1989', 249.90, 'imagens/ESPANHA/CAMISA RETRÔ ATLÉTICO DE MADRID (ESPANHA) 1989 - 1990.jpg', this)">
+          🛒 Adicionar
+        </button>
+        <button class="buy-btn">⚡ Comprar</button>
+      </div>
     </div>
 
   </div>
 </section>
 
+<!-- 🔥 CARRINHO -->
 <div id="cart" class="cart">
   <h2>Seu Carrinho</h2>
+
   <ul id="cart-items"></ul>
-  <p>Total: R$ <span id="total">0</span></p>
-  <button onclick="closeCart()">Fechar</button>
+
+  <div class="cart-footer">
+    <p>Total: R$ <span id="total">0.00</span></p>
+    <button class="checkout-btn">Finalizar compra</button>
+  </div>
 </div>
 
 <footer>
@@ -119,7 +168,7 @@
 
   </div>
 
-  <p>© 2026 Loja Esportiva - Todos os direitos reservados</p>
+  <p>© 2026 VintageSports - Todos os direitos reservados</p>
 </footer>
 
 <script src="src/javascript/script.js" defer></script>
