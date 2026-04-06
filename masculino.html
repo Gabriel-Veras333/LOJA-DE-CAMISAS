@@ -1,11 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VintageSports</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/home.css">
+    <link rel="stylesheet" href="src/styles/produtos.css">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
+    <link rel="stylesheet" href="src/styles/filtro_de_pesquisa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <title>Masculino VintageSports</title>
 </head>
+
 <body>
-    <h1>Camisas Masculinas</h1>
+
+<div id="overlay"></div>
+
+<header>
+  <div class="logo">
+      <img src="imagens/logo.png" alt="">
+      <h1>Vintage<span style="color:#f6d221;">Sports</span></h1>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./masculino.html" class="active">Masculino</a></li>
+      <li><a href="./femenino.html">Feminino</a></li>
+      <li><a href="./ofertas.html">Ofertas</a></li>
+    </ul>
+  </nav>
+
+  <div class="icons">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Buscar...">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    </div>
+    <button id="cart-btn">🛒 <span id="cart-count">0</span></button>
+  </div>
+</header>
+
+<!-- 🔥 CONTAINER PRINCIPAL -->
+<div class="shop-container">
+
+  <!-- 🔥 FILTRO ESTILO NIKE -->
+  <aside class="filters">
+
+    <div class="filtro-item">
+      <button>Times <span>⌄</span></button>
+      <div class="filtro-conteudo">
+        <label><input type="checkbox" value="bayern"> Bayern</label>
+        <label><input type="checkbox" value="boca"> Boca Juniors</label>
+        <label><input type="checkbox" value="manchester"> Manchester</label>
+        <label><input type="checkbox" value="atletico"> Atlético</label>
+      </div>
+    </div>
+
+    <div class="filtro-item">
+      <button>Preço <span>⌄</span></button>
+      <div class="filtro-conteudo">
+        <label><input type="checkbox" value="0 - 150"> Até 150</label>
+        <label><input type="checkbox" value="150 - 200"> R$150 - R$200</label>
+        <label><input type="checkbox" value="200 - 300"> R$200 - R$300</label>
+        <label><input type="checkbox" value="300 - 350"> R$300 - R$350</label>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- 🔥 PRODUTOS -->
+  <section class="products">
+    <h2>Produtos masculinos</h2>
+
+    <div class="grid" id="product-list">
+
+      <!-- PRODUTO 1 -->
+      <div class="card" data-name="bayern" data-price="299.90">
+        <img src="imagens/ALEMANHA/BAYERN MUNICH 1989 1990.jpg">
+        <h3>Camisa Bayern Munich 1989</h3>
+        <div class="stars">★★★★★</div>
+        <p class="price">R$ 299,90</p>
+
+        <div class="buttons">
+          <button onclick="addToCart('Camisa Bayern Munich 1989', 299.90, 'imagens/ALEMANHA/BAYERN MUNICH 1989 1990.jpg' ,this)">
+            🛒 Adicionar
+          </button>
+          <button class="buy-btn">⚡ Comprar</button>
+        </div>
+      </div>
+
+      <!-- PRODUTO 2 -->
+      <div class="card" data-name="boca" data-price="199.90">
+        <img src="imagens/ARGENTINA/Camisa Boca Juniors 1 Retrô 1990  1991.webp">
+        <h3>Camisa Boca Juniors 1990</h3>
+        <div class="stars">★★★★★</div>
+        <p class="price">R$ 199,90</p>
+
+        <div class="buttons">
+          <button onclick="addToCart('Camisa Boca Juniors 1990', 199.90, 'imagens/ARGENTINA/Camisa Boca Juniors 1 Retrô 1990  1991.webp', this)">
+            🛒 Adicionar
+          </button>
+          <button class="buy-btn">⚡ Comprar</button>
+        </div>
+      </div>
+
+      <!-- PRODUTO 3 -->
+      <div class="card" data-name="manchester" data-price="249.90">
+        <img src="imagens/INGLATERRA/Camisa Manchester United Away Azul 1990-92 Masculina.webp">
+        <h3>Camisa Manchester United 1990-92</h3>
+        <div class="stars">★★★★★</div>
+        <p class="price">R$ 249,90</p>
+
+        <div class="buttons">
+          <button onclick="addToCart('Camisa Manchester United 1990-92', 249.90, 'imagens/INGLATERRA/Camisa Manchester United Away Azul 1990-92 Masculina.webp', this)">
+            🛒 Adicionar
+          </button>
+          <button class="buy-btn">⚡ Comprar</button>
+        </div>
+      </div>
+
+      <!-- PRODUTO 4 -->
+      <div class="card" data-name="atletico" data-price="249.90">
+        <img src="imagens/ESPANHA/CAMISA RETRÔ ATLÉTICO DE MADRID (ESPANHA) 1989 - 1990.jpg">
+        <h3>Camisa Atlético de Madrid 1989</h3>
+        <div class="stars">★★★★★</div>
+        <p class="price">R$ 249,90</p>
+
+        <div class="buttons">
+          <button onclick="addToCart('Camisa Atlético de Madrid 1989', 249.90, 'imagens/ESPANHA/CAMISA RETRÔ ATLÉTICO DE MADRID (ESPANHA) 1989 - 1990.jpg', this)">
+            🛒 Adicionar
+          </button>
+          <button class="buy-btn">⚡ Comprar</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- 🔥 CARRINHO -->
+<div id="cart" class="cart">
+  <h2>Seu Carrinho</h2>
+
+  <ul id="cart-items"></ul>
+
+  <div class="cart-footer">
+    <p>Total: R$ <span id="total">0.00</span></p>
+
+    <button class="checkout-btn" onclick="finalizarCompra()">
+      Finalizar compra
+    </button>
+
+    <button class="cancel-btn" onclick="cancelarCompra()">
+      Cancelar
+    </button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+
+    <div>
+      <h4>Sobre</h4>
+      <ul>
+        <li><a href="#">Quem somos</a></li>
+        <li><a href="#">Carreiras</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Ajuda</h4>
+      <ul>
+        <li><a href="#">Frete</a></li>
+        <li><a href="#">Trocas</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Redes</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <p>© 2026 VintageSports - Todos os direitos reservados</p>
+</footer>
+
+<script src="src/javascript/script.js" defer></script>
+
 </body>
 </html>
