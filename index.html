@@ -39,7 +39,10 @@
         <input type="text" id="searchInput" placeholder="Buscar...">
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
     </div>
-    <button id="cart-btn">🛒 <span id="cart-count">0</span></button>
+    <button id="cart-btn">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span id="cart-count">0</span>
+    </button>
   </div>
 </header>
 
@@ -137,15 +140,49 @@
   <div class="cart-footer">
     <p>Total: R$ <span id="total">0.00</span></p>
 
-    <button class="checkout-btn" onclick="finalizarCompra()">
-      Finalizar compra
+    <button class="vercart-btn" onclick="VerCarrinho()">
+      Ver Carrinho completo
     </button>
 
-    <button class="cancel-btn" onclick="cancelarCompra()">
-      Cancelar
+    <button class="conti-btn" onclick="ContinuarCompra()">
+      Continuar Compra
     </button>
   </div>
 </div>
+
+
+<section class="quem-somos">
+  <div class="container">
+    
+    <h2>Quem somos</h2>
+
+    <p class="descricao">
+      A Vintagesports é uma empresa especializada na comercialização de camisas de clubes e seleções nacionais, oferecendo produtos 100% originais, com garantia de procedência e alta qualidade.
+    </p>
+
+    <p class="descricao">
+      Nosso propósito vai além da venda: buscamos conectar torcedores à história, à emoção e à identidade do esporte por meio de peças que representam momentos marcantes do futebol mundial.
+    </p>
+
+    <div class="destaques">
+      <div class="card-s">
+        <h3>✔ Produtos Originais</h3>
+        <p>Garantia de autenticidade em todas as peças.</p>
+      </div>
+
+      <div class="card-s">
+        <h3>✔ Alta Qualidade</h3>
+        <p>Conforto, durabilidade e acabamento premium.</p>
+      </div>
+
+      <div class="card-s">
+        <h3>✔ Experiências Exclusivas</h3>
+        <p>Promoções com camisas autografadas e encontros com jogadores.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <footer>
   <div class="footer-grid">

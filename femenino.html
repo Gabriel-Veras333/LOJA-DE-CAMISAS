@@ -36,7 +36,10 @@
         <input type="text" id="searchInput" placeholder="Buscar...">
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
     </div>
-    <button id="cart-btn">🛒 <span id="cart-count">0</span></button>
+    <button id="cart-btn">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span id="cart-count">0</span>
+    </button>
   </div>
 </header>
 
@@ -148,12 +151,12 @@
   <div class="cart-footer">
     <p>Total: R$ <span id="total">0.00</span></p>
 
-    <button class="checkout-btn" onclick="finalizarCompra()">
-      Finalizar compra
+    <button class="vercart-btn" onclick="VerCarrinho()">
+      Ver Carrinho completo
     </button>
 
-    <button class="cancel-btn" onclick="cancelarCompra()">
-      Cancelar
+    <button class="conti-btn" onclick="ContinuarCompra()">
+      continuar Compra
     </button>
   </div>
 </div>

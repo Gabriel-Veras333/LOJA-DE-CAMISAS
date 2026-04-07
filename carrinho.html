@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="src/styles/header.css">
     <link rel="stylesheet" href="src/styles/home.css">
     <link rel="stylesheet" href="src/styles/produtos.css">
     <link rel="stylesheet" href="src/styles/style.css">
     <link rel="stylesheet" href="src/styles/footer.css">
-    <link rel="stylesheet" href="src/styles/filtro_de_pesquisa.css">
+    <link rel="stylesheet" href="src/styles/checkout.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 
-    <title>Masculino VintageSports</title>
+
+    <title>Carrinho VintageSports</title>
 </head>
-
 <body>
-
-<div id="overlay"></div>
 
 <header>
   <div class="logo">
@@ -28,64 +24,65 @@
 
   <nav>
     <ul>
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./masculino.html" class="active">Masculino</a></li>
+      <li><a href="index.html"class="active">Home</a></li>
+      <li><a href="./masculino.html">Masculino</a></li>
       <li><a href="./femenino.html">Feminino</a></li>
       <li><a href="./ofertas.html">Ofertas</a></li>
     </ul>
   </nav>
-
-  <div class="icons">
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Buscar...">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-    </div>
-    <button id="cart-btn">
-      <i class="fa-solid fa-bag-shopping"></i>
-      <span id="cart-count">0</span>
-    </button>
-  </div>
 </header>
 
-<!-- 🔥 CONTAINER PRINCIPAL -->
-<div class="shop-container">
+<body>
 
-  <!-- 🔥 FILTRO ESTILO NIKE -->
-  <aside class="filters">
-
-    <div class="filtro-item">
-      <button>Times <span>⌄</span></button>
-      <div class="filtro-conteudo">
-        <label><input type="checkbox" value="bayern"> Bayern</label>
-        <label><input type="checkbox" value="boca"> Boca Juniors</label>
-        <label><input type="checkbox" value="manchester"> Manchester</label>
-        <label><input type="checkbox" value="atletico"> Atlético</label>
-      </div>
-    </div>
-
-    <div class="filtro-item">
-      <button>Preço <span>⌄</span></button>
-      <div class="filtro-conteudo">
-        <label><input type="checkbox" value="0 - 150"> Até 150</label>
-        <label><input type="checkbox" value="150 - 200"> R$150 - R$200</label>
-        <label><input type="checkbox" value="200 - 300"> R$200 - R$300</label>
-        <label><input type="checkbox" value="300 - 350"> R$300 - R$350</label>
-      </div>
-    </div>
-
-  </aside>
-
-  <!-- 🔥 PRODUTOS -->
-  <section class="products">
-    <h2>Produtos masculinos</h2>
-
-    <div class="grid" id="product-list"></div>
-
-  </section>
-
+<div class="steps">
+  <div class="active">1 Carrinho</div>
+  <div>2 Identificação</div>
+  <div>3 Pagamento</div>
 </div>
 
-<!-- 🔥 CARRINHO -->
+<div class="alert">
+  Os produtos no carrinho não estão reservados.
+</div>
+
+<div class="container">
+
+  <!-- PRODUTOS -->
+  <div class="left">
+    <h3>Produtos</h3>
+    <div id="cart-items"></div>
+  </div>
+
+  <!-- LADO DIREITO -->
+  <div class="right">
+
+    <div class="box">
+      <h3>Prazo de entrega</h3>
+      <input type="text" id="cep" placeholder="00000-000">
+      <button onclick="calcularFrete()">Calcular</button>
+      <p id="frete-texto"></p>
+    </div>
+
+    <div class="box">
+      <h3>Cupom</h3>
+      <input type="text" id="cupom" placeholder="Digite seu cupom">
+      <button onclick="aplicarCupom()">Aplicar</button>
+    </div>
+
+    <div class="box">
+      <h3>Resumo</h3>
+
+      <p>Produtos: R$ <span id="subtotal">0</span></p>
+      <p>Desconto: R$ <span id="desconto">0</span></p>
+      <p>Frete: R$ <span id="frete">0</span></p>
+
+      <h2>Total: R$ <span id="total">0</span></h2>
+
+      <button class="finalizar">Continuar</button>
+    </div>
+
+  </div>
+</div>
+
 <div id="cart" class="cart">
   <h2>Seu Carrinho</h2>
 
@@ -136,8 +133,9 @@
 
   <p>© 2026 VintageSports - Todos os direitos reservados</p>
 </footer>
-<script src="src/javascript/produtos.js"></script>
-<script src="src/javascript/script.js" defer></script>
 
+<script src="checkout.js"></script>
+</body>
+    
 </body>
 </html>

@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBox = document.querySelector(".search-box");
     const input = document.getElementById("searchInput");
     const icon = document.querySelector(".search-icon");
-    const overlay = document.getElementById("overlay");
+    overlay = document.getElementById("overlay");
     const cartBtn = document.getElementById("cart-btn");
-    const cartPanel = document.getElementById("cart");
+    cartPanel = document.getElementById("cart");
 
     // 🔥 FILTROS
     botoes.forEach((botao) => {
@@ -105,13 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* 🔥 FECHAR OVERLAY */
     overlay.addEventListener("click", closeCart);
-
-    function closeCart() {
-      cartPanel.classList.remove("active");
-      overlay.classList.remove("active");
-      document.body.classList.remove("no-scroll");
-      document.body.style.paddingRight = "0px";
-    }
 
     /* 🔥 BUSCA */
     icon.addEventListener("click", () => {
@@ -243,20 +236,28 @@ function updateCart() {
     const li = document.createElement("li");
     li.classList.add("cart-item");
 
-    li.innerHTML = `
-      <input type="checkbox" ${item.selected ? "checked" : ""} 
-        onchange="toggleItem(${index})">
+li.innerHTML = `
+  <input type="checkbox" ${item.selected ? "checked" : ""} 
+    onchange="toggleItem(${index})">
 
-      <img src="${item.image}" class="cart-img">
+  <img src="${item.image}" class="cart-img">
 
-      <div>
-        <p>${item.name}</p>
-        <p>Qtd: ${item.quantity}</p>
-        <p>R$ ${subtotal.toFixed(2)}</p>
-      </div>
+  <div class="cart-info">
+    <p class="cart-name">${item.name}</p>
 
-      <button onclick="event.stopPropagation(); removeItem(${index})">X</button>
-    `;
+    <div class="qtd-control">
+      <button onclick="diminuirQtd(${index})">−</button>
+      <span>${item.quantity}</span>
+      <button onclick="aumentarQtd(${index})">+</button>
+    </div>
+
+    <p class="cart-price">R$ ${(item.price * item.quantity).toFixed(2)}</p>
+  </div>
+
+  <button class="delete-btn" onclick="removeItem(${index})">
+    <i class="fa-solid fa-trash"></i>
+  </button>
+`;
 
     cartItems.appendChild(li);
   });
@@ -284,24 +285,22 @@ function removeItem(index) {
   updateCart();
 }
 
-/* 🔥 FINALIZAR COMPRA */
-function finalizarCompra() {
-  let total = document.getElementById("total").innerText;
-
-  if (total == "0.00") {
-    alert("Selecione pelo menos um item!");
-    return;
-  }
-
-  localStorage.setItem("totalCompra", total);
-  window.location.href = "pagamento.html";
+function VerCarrinho() {
+  window.location.href = "carrinho.html";
 }
 
-/* 🔥 CANCELAR COMPRA */
-function cancelarCompra() {
-  cart = [];
-  localStorage.removeItem("cart");
-  updateCart();
+function ContinuarCompra() {
+  closeCart();
+}
+
+function atualizarTotal() {
+  let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+  let total = carrinho.reduce((acc, item) => {
+    return acc + item.preco;
+  }, 0);
+
+  document.getElementById("total").innerText = total.toFixed(2);
 }
 
 /* 🔥 ABRIR/FECHAR FILTRO (ESTILO NIKE) */
@@ -361,3 +360,66 @@ function filtrarProdutos() {
     card.style.display = mostrar ? "block" : "none";
   });
 }
+
+function closeCart() {
+  if (!cartPanel || !overlay) return;
+
+  cartPanel.classList.remove("active");
+  overlay.classList.remove("active");
+  document.body.classList.remove("no-scroll");
+  document.body.style.paddingRight = "0px";
+}
+
+function aumentarQtd(index) {
+  cart[index].quantity++;
+  updateCart();
+}
+
+function diminuirQtd(index) {
+  if (cart[index].quantity > 1) {
+    cart[index].quantity--;
+  } else {
+    cart.splice(index, 1);
+  }
+  updateCart();
+}
+
+function removeItem(index) {
+  if (confirm("Remover este item do carrinho?")) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const container = document.getElementById("product-list");
+
+  produtos.forEach(produto => {
+    const card = document.createElement("div");
+
+    card.classList.add("card");
+    card.setAttribute("data-name", produto.categoria);
+    card.setAttribute("data-price", produto.preco);
+
+    card.innerHTML = `
+      <img src="${produto.imagem}">
+      <h3>${produto.nome}</h3>
+
+      <div class="stars">★★★★★</div>
+
+      <p class="price">R$ ${produto.preco.toFixed(2).replace(".", ",")}</p>
+
+      <div class="buttons">
+        <button onclick="addToCart('${produto.nome}', ${produto.preco}, '${produto.imagem}', this)">
+          🛒 Adicionar
+        </button>
+
+        <button class="buy-btn">⚡ Comprar</button>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+
+});
