@@ -262,3 +262,16 @@ body.no-scroll {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ESTADO INICIAL (invisível) */
+.animar {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+/* QUANDO APARECE */
+.animar.ativo {
+  opacity: 1;
+  transform: translateY(0);
+}

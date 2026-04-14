@@ -1,0 +1,66 @@
+/* 🔥 SEÇÃO */
+.promo {
+  position: relative;
+  height: 80vh;
+  background: url('../../imagens/banner-oferta.webp') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+/* 🔥 OVERLAY ESCURO */
+.promo-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: 
+    linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 100%);
+}
+
+/* 🔥 CONTEÚDO */
+.promo-content {
+  position: relative;
+  max-width: 700px;
+  padding: 20px;
+  z-index: 2;
+}
+
+/* TAG */
+.tag {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: #f6d221;
+  text-transform: uppercase;
+}
+
+/* TÍTULO */
+.promo h2 {
+  font-size: 3rem;
+  margin: 15px 0;
+  font-weight: 700;
+}
+
+/* TEXTO */
+.promo p {
+  color: #ddd;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+/* BOTÃO */
+.btn-promo {
+  background: #f6d221;
+  color: black;
+  border: none;
+  padding: 14px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-promo:hover {
+  background: white;
+}

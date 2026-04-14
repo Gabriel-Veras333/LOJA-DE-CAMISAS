@@ -47,15 +47,26 @@
 </header>
 
 <section class="hero">
-  <div class="content">
-      <h1>Nova coleção disponível agora</h1>
-      <a href="./ofertas.html">
-        <button>Comprar agora!</button>
-      </a>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <span class="tag">Nova Coleção</span>
+
+    <h1>
+      Vista a história. Viva o jogo.
+    </h1>
+
+    <p>
+      Camisas oficiais, momentos inesquecíveis e experiências únicas para quem vive o futebol de verdade.
+    </p>
+
+    <a href="./ofertas.html" class="btn-hero">
+      Comprar agora!
+    </a>
   </div>
 </section>
 
-<section class="products">
+<section class="products animar">
   <h2>Destaques</h2>
 
   <div class="grid" id="product-list">
@@ -145,37 +156,37 @@
     </button>
 
     <button class="conti-btn" onclick="ContinuarCompra()">
-      Continuar Compra
+      Continuar Comprando
     </button>
   </div>
 </div>
 
 
-<section class="quem-somos">
+<section class="quem-somos animar">
   <div class="container">
     
-    <h2>Quem somos</h2>
+    <h2 class="animar">Quem somos</h2>
 
-    <p class="descricao">
+    <p class="descricao animar">
       A Vintagesports é uma empresa especializada na comercialização de camisas de clubes e seleções nacionais, oferecendo produtos 100% originais, com garantia de procedência e alta qualidade.
     </p>
 
-    <p class="descricao">
+    <p class="descricao animar">
       Nosso propósito vai além da venda: buscamos conectar torcedores à história, à emoção e à identidade do esporte por meio de peças que representam momentos marcantes do futebol mundial.
     </p>
 
     <div class="destaques">
-      <div class="card-s">
+      <div class="card-s animar">
         <h3>✔ Produtos Originais</h3>
         <p>Garantia de autenticidade em todas as peças.</p>
       </div>
 
-      <div class="card-s">
+      <div class="card-s animar">
         <h3>✔ Alta Qualidade</h3>
         <p>Conforto, durabilidade e acabamento premium.</p>
       </div>
 
-      <div class="card-s">
+      <div class="card-s animar">
         <h3>✔ Experiências Exclusivas</h3>
         <p>Promoções com camisas autografadas e encontros com jogadores.</p>
       </div>
@@ -184,10 +195,44 @@
   </div>
 </section>
 
-<footer>
+<section class="contato animar">
+  <h2 class="titulo-contato animar">Fale conosco</h2>
+  <p class="subtitulo-contato animar">Estamos aqui para ajudar você</p>
+
+  <div class="contato-container">
+
+    <!-- EMAIL -->
+    <div class="card-contato copiavel animar" onclick="copiarTexto('email', this)">
+      <h3>Email</h3>
+      <p id="email">Vintagesports.contato@gmail.com</p>
+      <span class="status">Clique para copiar</span>
+    </div>
+
+    <!-- TELEFONE -->
+    <div class="card-contato copiavel animar" onclick="copiarTexto('telefone', this)">
+      <h3>Telefone</h3>
+      <p id="telefone">(11) 99999-9999</p>
+      <span class="status">Clique para copiar</span>
+    </div>
+
+    <!-- INSTAGRAM -->
+    <div class="card-contato animar">
+      <h3>Instagram</h3>
+      <p>
+        <a href="https://instagram.com/seuusuario" target="_blank">
+          @VintageSports
+        </a>
+      </p>
+      <span class="status">Abrir perfil</span>
+    </div>
+
+  </div>
+</section>
+
+<footer class="">
   <div class="footer-grid">
 
-    <div>
+    <div class="animar">
       <h4>Sobre</h4>
       <ul>
         <li><a href="#">Quem somos</a></li>
@@ -195,7 +240,7 @@
       </ul>
     </div>
 
-    <div>
+    <div class="animar">
       <h4>Ajuda</h4>
       <ul>
         <li><a href="#">Frete</a></li>
@@ -204,7 +249,7 @@
       </ul>
     </div>
 
-    <div>
+    <div class="animar">
       <h4>Redes</h4>
       <ul>
         <li><a href="#">Instagram</a></li>
@@ -214,7 +259,7 @@
 
   </div>
 
-  <p>© 2026 VintageSports - Todos os direitos reservados</p>
+  <p class="animar">© 2026 VintageSports - Todos os direitos reservados</p>
 </footer>
 
 <script src="src/javascript/script.js" defer></script>

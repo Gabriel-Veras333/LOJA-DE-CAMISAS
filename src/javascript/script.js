@@ -303,17 +303,21 @@ function atualizarTotal() {
   document.getElementById("total").innerText = total.toFixed(2);
 }
 
-/* 🔥 ABRIR/FECHAR FILTRO (ESTILO NIKE) */
+/* =========================
+   ABRIR / FECHAR FILTROS
+========================= */
 document.querySelectorAll(".filtro-item button").forEach(botao => {
   botao.addEventListener("click", () => {
     const conteudo = botao.nextElementSibling;
-
     conteudo.style.display =
       conteudo.style.display === "block" ? "none" : "block";
   });
 });
 
-/* 🔥 FILTRAR PRODUTOS */
+
+/* =========================
+   FILTROS
+========================= */
 const checkboxes = document.querySelectorAll(".filters input");
 
 checkboxes.forEach(cb => {
@@ -323,44 +327,123 @@ checkboxes.forEach(cb => {
 function filtrarProdutos() {
   const cards = document.querySelectorAll(".card");
 
+  const categoriasSelecionadas = [];
   const timesSelecionados = [];
   const faixasPreco = [];
 
-  document.querySelectorAll(".filters input:checked").forEach(cb => {
-    if (cb.value.includes("-")) {
-      // 🔥 faixa de preço
-      const [min, max] = cb.value.split("-").map(Number);
-      faixasPreco.push({ min, max });
-    } else {
-      // 🔥 time
+  checkboxes.forEach(cb => {
+    if (!cb.checked) return;
+
+    // ✔️ CATEGORIA
+    if (cb.classList.contains("categoria")) {
+      categoriasSelecionadas.push(cb.value);
+    }
+
+    // ✔️ TIME (NOVO - ESSENCIAL NO SEU CASO)
+    if (cb.closest(".filtro-item")?.querySelector("button")?.innerText.includes("Times")) {
       timesSelecionados.push(cb.value);
     }
+
+    // ✔️ PREÇO
+    if (cb.classList.contains("preco")) {
+      const [min, max] = cb.value
+        .split("-")
+        .map(v => Number(v.trim()));
+
+      faixasPreco.push({ min, max });
+    }
   });
 
-  cards.forEach(card => {
-    const nome = card.dataset.name;
-    const preco = parseFloat(card.dataset.price);
+cards.forEach(card => {
+  const categoria = card.dataset.categoria;
+  const time = card.dataset.time;
 
-    let mostrar = true;
+  // 🔥 PREÇO (garantido correto)
+  const preco = Number(card.dataset.preco);
 
-    // 🔥 FILTRO POR TIME
-    if (timesSelecionados.length > 0) {
-      mostrar = timesSelecionados.includes(nome);
-    }
+  console.log("PREÇO:", card.dataset.preco);
 
-    // 🔥 FILTRO POR FAIXA DE PREÇO
-    if (faixasPreco.length > 0) {
-      const dentroDeAlgumaFaixa = faixasPreco.some(faixa => {
-        return preco >= faixa.min && preco <= faixa.max;
-      });
+  let mostrar = true;
 
-      mostrar = mostrar && dentroDeAlgumaFaixa;
-    }
+  // =========================
+  // 🔥 FILTRO CATEGORIA
+  // =========================
+  if (categoriasSelecionadas.length > 0) {
+    mostrar = categoriasSelecionadas.includes(categoria);
+  }
 
-    card.style.display = mostrar ? "block" : "none";
-  });
+  // =========================
+  // 🔥 FILTRO TIME
+  // =========================
+  if (timesSelecionados.length > 0) {
+    mostrar = mostrar && timesSelecionados.includes(time);
+  }
+
+  // =========================
+  // 🔥 FILTRO PREÇO (CORRIGIDO)
+  // =========================
+  if (faixasPreco.length > 0) {
+    const okPreco = faixasPreco.some(faixa =>
+      preco >= faixa.min && preco <= faixa.max
+    );
+
+    mostrar = mostrar && okPreco;
+  }
+
+  card.style.display = mostrar ? "block" : "none";
+});
 }
 
+
+/* =========================
+   CARRINHO (CLICK GLOBAL)
+========================= */
+document.addEventListener("click", function (e) {
+  if (!e.target.classList.contains("buy-btn")) return;
+
+  e.stopPropagation();
+
+  const card = e.target.closest(".card");
+
+  const nome = card.dataset.nome;
+  const preco = parseFloat(card.dataset.preco);
+  const imagem = card.querySelector("img").src;
+
+  cart.forEach(item => item.selected = false);
+
+  const itemExistente = cart.find(item => item.name === nome);
+
+  if (itemExistente) {
+    itemExistente.quantity++;
+    itemExistente.selected = true;
+  } else {
+    cart.push({
+      name: nome,
+      price: preco,
+      image: imagem,
+      quantity: 1,
+      selected: true
+    });
+  }
+
+  updateCart();
+
+  cartPanel.classList.add("active");
+  overlay.classList.add("active");
+
+  const scrollBarWidth =
+    window.innerWidth - document.documentElement.clientWidth;
+
+  document.body.style.paddingRight = scrollBarWidth + "px";
+  document.body.classList.add("no-scroll");
+
+  showToast("Produto pronto para compra ⚡");
+});
+
+
+/* =========================
+   FECHAR CARRINHO
+========================= */
 function closeCart() {
   if (!cartPanel || !overlay) return;
 
@@ -370,6 +453,10 @@ function closeCart() {
   document.body.style.paddingRight = "0px";
 }
 
+
+/* =========================
+   QUANTIDADE CARRINHO
+========================= */
 function aumentarQtd(index) {
   cart[index].quantity++;
   updateCart();
@@ -391,16 +478,23 @@ function removeItem(index) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
 
+/* =========================
+   GERAR PRODUTOS
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("product-list");
 
   produtos.forEach(produto => {
     const card = document.createElement("div");
 
     card.classList.add("card");
-    card.setAttribute("data-name", produto.categoria);
-    card.setAttribute("data-price", produto.preco);
+
+    // ✔️ PADRÃO CORRETO
+    card.setAttribute("data-time", produto.time);
+    card.setAttribute("data-nome", produto.nome);
+    card.dataset.preco = produto.preco;
+    card.setAttribute("data-categoria", produto.categoria);
 
     card.innerHTML = `
       <img src="${produto.imagem}">
@@ -421,5 +515,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     container.appendChild(card);
   });
-
 });
+
+
+/* =========================
+   COPIAR TEXTO
+========================= */
+function copiarTexto(id, elemento) {
+  const texto = document.getElementById(id).innerText;
+
+  navigator.clipboard.writeText(texto);
+
+  elemento.classList.add("copiado");
+  elemento.querySelector(".status").innerText = "Copiado ✔";
+
+  setTimeout(() => {
+    elemento.classList.remove("copiado");
+    elemento.querySelector(".status").innerText = "Clique para copiar";
+  }, 2000);
+}
+
+
+/* =========================
+   ANIMAÇÃO SCROLL
+========================= */
+const elementos = document.querySelectorAll(".animar");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("ativo");
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+elementos.forEach(el => observer.observe(el));
